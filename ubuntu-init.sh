@@ -12,7 +12,6 @@ GUI=$(zenity --list --checklist \
   --text="请从下面列表中选择需要设置或安装的项目" \
   --column="选择" --column="操作"	--column="描述" \
   TRUE "更新系统" "更新系统及应用软件包"  \
-  FALSE "调整屏幕亮度" "调整屏幕默认亮度为40%，修改此值请在终端执行：xbacklight = 40%, 后面的值为需要设置默认亮度百分比" \
   FALSE "安装 fcitx 框架" "安装 fcitx 输入法框架，并安装搜狗拼音输入法" \
   FALSE "安装文泉驿字体套件" "安装文泉驿字体，优化中文显示效果" \
   FALSE "安装新立得软件包管理器" "新立得是Linux平台的老牌软件包软件工具，支持软件源管理、软件包管理功能" \
@@ -62,15 +61,14 @@ then
 
  
 
-  # 调整屏幕默认亮度操作
-  if [[ $GUI == *"调整屏幕亮度"* ]]
-  then
-  	
-  	echo "正在调整屏幕亮度"
-  	echo ""
-    sudo apt -y install xbacklight
-    xbacklight = 40%
-  fi
+# 调整屏幕默认亮度操作
+#  if [[ $GUI == *"调整屏幕亮度"* ]]
+#  then  	
+#  	echo "正在调整屏幕亮度"
+#  	echo ""
+#    sudo apt -y install xbacklight
+#    xbacklight = 40%
+#  fi
 
   # 安装 fcitx 框架操作
   if [[ $GUI == *"安装 fcitx 框架"* ]]
@@ -83,12 +81,13 @@ then
     echo ""
     sudo dpkg -i sogoupinyin_2.1.0._amd64.deb
     sudo rm sogoupinyin_2.1.0._amd64.deb
-    sudo apt-get install im-config
+#    sudo apt-get install im-config
     echo "正在解决依赖关系"
     sudo apt-get -f -y install 
     
-    echo "请在设置向导中选择fcitx为默认输入法框架，第二步请选择“Yes”"
+    echo "请在设置中选择fcitx为默认输入法框架"
     echo ""
+    /usr/bin/python3 /usr/bin/gnome-language-selector
     im-config
     echo "请点击+ 添加搜狗输入法"
     fcitx-config-gtk3
@@ -104,7 +103,7 @@ then
   fi
 
   # 安装新立得软件包管理器操作
-  if [[ $GUI == *"安装文泉驿字体套件"* ]]
+  if [[ $GUI == *"安装新立得"* ]]
   then
   	
   	echo "正在安装新立得软件包管理器"
@@ -126,14 +125,14 @@ then
   then
     echo "正在安装 Flatabulous 主题"
     echo ""
-    sudo add-apt-repository ppa:noobslab/themes
+    sudo add-apt-repository ppa:noobslab/themes -y
     sudo apt-get update
-    sudo apt-get install flatabulous-theme
+    sudo apt-get install flatabulous-theme -y
     echo "正在安装 Flatabulous 图标主题"
     echo ""
-    sudo add-apt-repository ppa:noobslab/icons
+    sudo add-apt-repository ppa:noobslab/icons -y
     sudo apt-get update
-    sudo apt-get install ultra-flat-icons ultra-flat-icons-orange ultra-flat-icons-green
+    sudo apt-get install ultra-flat-icons ultra-flat-icons-orange ultra-flat-icons-green -y
   fi
 
   # 添加 Oibaf 软件源操作
@@ -432,7 +431,7 @@ then
   echo "配置完成，部分配置重启后生效。"
 
   echo "------------------------------------------------------------------"
-  echo "交流群： QQ群:258348902  "          
+  echo "交流群： QQ群:258348902  DJANEDU视频教育 "          
   echo "------------------------------------------------------------------"
   notify-send -i utilities-terminal Ubuntu16.04快速配置工具 "配置完成，部分配置重启后生效。"
 
