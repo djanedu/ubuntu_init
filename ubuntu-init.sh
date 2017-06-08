@@ -88,9 +88,7 @@ then
     echo "请在设置中选择fcitx为默认输入法框架"
     echo ""
     /usr/bin/python3 /usr/bin/gnome-language-selector
-    im-config
-    echo "请点击+ 添加搜狗输入法"
-    fcitx-config-gtk3
+    notify-send -i  gnome-terminal Ubuntu16.04快速配置工具 "搜狗输入法需要在重启后才能配置。"
   fi
 
   # 安装文泉驿字体套件操作
@@ -201,7 +199,7 @@ then
   then    
   	echo "正在卸载系统自带浏览器"
   	echo ""
-    sudo apt remove --purge firefox -y
+        sudo apt remove --purge firefox -y
   fi
 
   # 安装 FeedReader 操作
@@ -433,7 +431,7 @@ then
   echo "------------------------------------------------------------------"
   echo "交流群： QQ群:258348902  DJANEDU视频教育 "          
   echo "------------------------------------------------------------------"
-  notify-send -i utilities-terminal Ubuntu16.04快速配置工具 "配置完成，部分配置重启后生效。"
-
+  notify-send -i gnome-terminal Ubuntu16.04快速配置工具 "配置完成，部分配置重启后生效。"
+  notify-send -i gnome-terminal Ubuntu16.04快速配置工具 "QQ群:258348902  DJANEDU视频教育 "
 
 fi
